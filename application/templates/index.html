@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Car Price Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet" media="all">
+  </head>
+  <body>
+    <div class="signupFrm">
+      <div class="wrapper">
+          <form class="form" action="/predict" method="post">
+              <h1 class="title">Used Cars Price Predictor</h1>
+              <div class="inputContainer">
+                <select id="company" name="company" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Company</option>
+                  {% for key in company %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="inputContainer">
+                <select id="name" name="name" class="input">
+                  <option value="none" disabled selected>Name</option>
+                </select>
+              </div>
+              <div class="inputContainer">
+                <input class="input" type="text" placeholder="a" name="model_year" />
+                <label class="label" for="">Model Year</label>
+              </div>
+              <div class="inputContainer">
+                <input class="input" type="text" placeholder="a" name="mileage" />
+                <label class="label" for="">Mileage</label>
+              </div>
+              <div class="inputContainer">
+                <select id="engine_type" name="engine_type" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Engine Type</option>
+                  {% for key in engine_type %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="inputContainer">
+                <select id="transmission" name="transmission" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Transmission</option>
+                  {% for key in transmission %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="inputContainer">
+                <select id="registered_city" name="registered_city" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Registered City</option>
+                  {% for key in registered_city %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="inputContainer">
+                <select id="color" name="color" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Color</option>
+                  {% for key in color %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="inputContainer">
+                <select id="assembley" name="assembley" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Assembley</option>
+                  {% for key in assembley %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="inputContainer">
+                <select id="body_type" name="body_type" class="input">
+                  <!-- Use a for loop to iterate through the dictionary and create the options -->
+                  <option value="none" disabled selected>Body Type</option>
+                  {% for key in body_type %}
+                    <option value="{{ key }}">{{ key }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="inputContainer">
+                <input class="input" type="text" placeholder="a" name="engine_capacity" />
+                <label class="label" for="">Engine Capacity</label>
+              </div>
+              {% if prediction %}
+              <p><b>Predicted price:</b> {{ prediction }}</p>
+              {% endif %}
+              <input class="submitBtn" type="submit" value="Predict" />
+          </form>
+      </div>
+  </div>
+  <script>
+    const companyDictionary = JSON.parse('{{ company | tojson }}');
+    const nameDictionary = JSON.parse('{{ name|tojson }}');
+    const companySelect = document.querySelector("#company");
+    const nameSelect = document.querySelector("#name");
+    companySelect.addEventListener("change", function() {
+      const selectedCompany = this.value;
+      nameSelect.innerHTML = "";
+      for (const name in nameDictionary) {
+        if (name.includes(selectedCompany)) {
+          const option = document.createElement("option");
+          var res = name.replace(selectedCompany,'')
+          option.value = name;
+          option.text = res;
+          nameSelect.add(option);
+        }
+      }
+    });
+  </script>
+  </body>
+</html>
