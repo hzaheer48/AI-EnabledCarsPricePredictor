@@ -1,1 +1,2 @@
 # ai-enabled-cars-price-predictor
+This project is an AI-enabled car price predictor that uses machine learning techniques to predict the prices of cars. The data for training the model was scraped from the PakWheels website, and the model was trained using the XGBoost algorithm. The project also includes a user interface built with Flask, allowing users to input car features and get price predictions instantly.
