@@ -17,7 +17,6 @@ This project focuses on predicting the prices of used cars in Pakistan using an 
 - Python 3.x
 - Flask
 - scikit-learn
-- Other dependencies (list them if necessary)
 
 ## Usage
 
