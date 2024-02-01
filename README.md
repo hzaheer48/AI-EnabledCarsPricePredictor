@@ -42,6 +42,8 @@ This project focuses on predicting the prices of used cars in Pakistan using an 
 ## Model Training
    The model training process is detailed in the model_training.ipynb notebook. For optimal results, consider retraining the model with updated data.
    
+## Screenshots
+   ![Alt text](/screenshots/screenshot_1.png?raw=true "Optional Title")
 
 ## Contributions
    Feel free to contribute to this project by opening issues or creating pull requests.
